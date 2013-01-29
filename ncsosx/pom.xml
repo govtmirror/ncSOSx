@@ -10,7 +10,7 @@
     <artifactId>ncsosx</artifactId>
     <packaging>jar</packaging>
     
-    <name>ncsosx</name>
+    <name>ncSOSx Library</name>
     
     <repositories>
         <repository>
@@ -23,22 +23,18 @@
         <dependency>
             <groupId>edu.ucar</groupId>
             <artifactId>netcdf</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jdom</groupId>
             <artifactId>jdom</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -59,11 +55,14 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
