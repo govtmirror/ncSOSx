@@ -4,7 +4,7 @@
     <parent>
         <groupId>gov.usgs.cida.ncsos</groupId>
         <artifactId>ncsosx-parent</artifactId>
-        <version>1-SNAPSHOT</version>
+        <version>1</version>
     </parent>
     
     <artifactId>ncsosx</artifactId>
