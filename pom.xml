@@ -21,23 +21,23 @@
     </properties>
 
     <scm>
-		<connection>scm:git:https://github.com/USGS-CIDA/ncSOSx.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/USGS-CIDA/ncSOSx.git</developerConnection>
-		<url>https://github.com/USGS-CIDA/ncSOSx</url>
-	</scm>
+        <connection>scm:git:https://github.com/USGS-CIDA/ncSOSx.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/USGS-CIDA/ncSOSx.git</developerConnection>
+        <url>https://github.com/USGS-CIDA/ncSOSx</url>
+    </scm>
 	
-	<distributionManagement>
-		<repository>
-			<id>cida-releases</id>
-			<name>CIDA Releases</name>
-			<url>${cida.maven.url}/content/repositories/cida-releases/</url>
-		</repository>
-		<snapshotRepository>
-			<id>cida-snapshots</id>
-			<name>CIDA Snapshots</name>
-			<url>${cida.maven.url}/content/repositories/cida-snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
+    <distributionManagement>
+        <repository>
+        <id>cida-releases</id>
+            <name>CIDA Releases</name>
+            <url>${cida.maven.url}/content/repositories/cida-releases/</url>
+        </repository>
+        <snapshotRepository>
+        <id>cida-snapshots</id>
+            <name>CIDA Snapshots</name>
+            <url>${cida.maven.url}/content/repositories/cida-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <repositories>
         <repository>
