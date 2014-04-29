@@ -74,7 +74,7 @@
 			</ows:DCP>
 			<ows:Parameter name="offering" use="required"/>
 			<ows:Parameter name="observedProperty" use="required"/>
-			<ows:Parameter name="time" use="optional"/>
+			<ows:Parameter name="timeEvent" use="optional"/>
 		</ows:Operation>
 		<ows:Operation name="DescribeSensor">
 			<ows:DCP>
