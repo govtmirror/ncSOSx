@@ -274,10 +274,16 @@ public class SOSGetObservationRequestHandler extends SOSBaseRequestHandler {
         
         String latVal = formatDegree(station.getLatitude());
         String lonVal = formatDegree(station.getLongitude());
-
-        CalendarDateRange cdr = makeCalendarDateRange(eventTime);
-        StationTimeSeriesFeature subset = stationTimeSeriesFeature.subset(cdr);
-        
+        StationTimeSeriesFeature subset = null;
+        if (eventTime != null) {
+            CalendarDateRange cdr = makeCalendarDateRange(eventTime);
+            setBeginTime(cdr.getStart().toString());
+            setEndTime(cdr.getEnd().toString());
+            subset = stationTimeSeriesFeature.subset(cdr);
+        } else {
+            // the whole thing
+            subset = stationTimeSeriesFeature;
+        }
         PointFeatureIterator iterator = subset.getPointFeatureIterator(-1);
         StringBuilder builder = new StringBuilder();
         DateFormatter dateFormatter = new DateFormatter();
@@ -322,7 +328,7 @@ public class SOSGetObservationRequestHandler extends SOSBaseRequestHandler {
     }
 
     private void setEndTime(String time) {
-        XMLDomUtils.setNodeValue(document, "om:Observation", "gml:EndPosition", time);
+        XMLDomUtils.setNodeValue(document, "om:Observation", "gml:endPosition", time);
     }
 
     private void setCount(int count) {
