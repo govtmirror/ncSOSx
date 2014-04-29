@@ -13,6 +13,8 @@ import ucar.nc2.dataset.NetcdfDataset;
 import ucar.nc2.ft.PointFeature;
 import ucar.nc2.ft.PointFeatureIterator;
 import ucar.nc2.ft.StationTimeSeriesFeature;
+import ucar.nc2.time.CalendarDate;
+import ucar.nc2.time.CalendarDateRange;
 import ucar.nc2.units.DateFormatter;
 import ucar.unidata.geoloc.Station;
 
@@ -273,9 +275,10 @@ public class SOSGetObservationRequestHandler extends SOSBaseRequestHandler {
         String latVal = formatDegree(station.getLatitude());
         String lonVal = formatDegree(station.getLongitude());
 
-        // TODO: eventTime filtering...
+        CalendarDateRange cdr = makeCalendarDateRange(eventTime);
+        StationTimeSeriesFeature subset = stationTimeSeriesFeature.subset(cdr);
         
-        PointFeatureIterator iterator = stationTimeSeriesFeature.getPointFeatureIterator(-1);
+        PointFeatureIterator iterator = subset.getPointFeatureIterator(-1);
         StringBuilder builder = new StringBuilder();
         DateFormatter dateFormatter = new DateFormatter();
         List<String> valueList = new ArrayList<String>();
@@ -324,5 +327,19 @@ public class SOSGetObservationRequestHandler extends SOSBaseRequestHandler {
 
     private void setCount(int count) {
         XMLDomUtils.setNodeValue(document, "om:Observation", "swe:value", Integer.toString(count));
+    }
+    
+    private CalendarDateRange makeCalendarDateRange(String[] eventTime) {
+        CalendarDateRange cdr = null;
+        if (eventTime == null || eventTime.length == 0) {
+            throw new IllegalArgumentException("Must be single date or date range");
+        } else if (eventTime.length >= 2) {
+            cdr = CalendarDateRange.of(CalendarDate.parseISOformat("gregorian", eventTime[0]),
+                    CalendarDate.parseISOformat("gregorian", eventTime[1]));
+        } else {
+            CalendarDate date = CalendarDate.parseISOformat("gregorian", eventTime[0]);
+            cdr = CalendarDateRange.of(date, date);
+        }
+        return cdr;
     }
 }
